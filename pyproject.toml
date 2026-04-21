@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "viaticos-app"
+version = "0.1.0"
+description = "Portal de viaticos de benchmarking en IA construido con Python Dash."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dash>=2.18,<3.0",
+    "dash-bootstrap-components>=1.6,<2.0",
+    "dash-ag-grid>=31.3,<32.0",
+    "cryptography<44",
+    "sqlalchemy>=2.0,<3.0",
+    "pydantic>=2.9,<3.0",
+    "pydantic-settings>=2.5,<3.0",
+    "python-dotenv>=1.0,<2.0",
+    "google-genai>=1.73,<2.0",
+    "Jinja2>=3.1,<4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9.0",
+    "dash[testing]>=2.18,<3.0",
+    "ruff>=0.6,<1.0",
+    "black>=24.8,<25.0",
+    "mypy>=1.11,<2.0",
+]
+
+[tool.black]
+line-length = 150
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 150
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+check_untyped_defs = true
+disable_error_code = ["attr-defined", "no-any-return", "arg-type", "assignment", "return-value", "import-untyped"]
+exclude = ["tests/"]
